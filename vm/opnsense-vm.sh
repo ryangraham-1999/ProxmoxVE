@@ -806,7 +806,13 @@ msg_ok "Starting OPNsense VM (Patience this takes 20-30 minutes)"
 qm start $VMID
 sleep 360 #changed from 90 to fix attempted login before vm is ready
 send_line_to_vm "root"
-send_line_to_vm "fetch https://raw.githubusercontent.com/opnsense/update/master/src/bootstrap/opnsense-bootstrap.sh.in"
+
+send_line_to_vm "pkg install curl"
+send_line_to_vm "y"
+sleep 10
+send_line_to_vm "y"
+
+send_line_to_vm "curl https://raw.githubusercontent.com/opnsense/update/master/src/bootstrap/opnsense-bootstrap.sh.in"
 if [ -n "$WAN_BRG" ]; then
   msg_info "Adding WAN interface"
   qm set $VMID \
