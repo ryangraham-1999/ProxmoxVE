@@ -804,7 +804,7 @@ msg_ok "Bridge interfaces have been successfully added."
 msg_ok "Created a OPNsense VM ${CL}${BL}(${HN})"
 msg_ok "Starting OPNsense VM (Patience this takes 20-30 minutes)"
 qm start $VMID
-sleep 180 #changed from 90 to fix attempted login before vm is ready
+sleep 360 #changed from 90 to fix attempted login before vm is ready
 send_line_to_vm "root"
 send_line_to_vm "fetch https://raw.githubusercontent.com/opnsense/update/master/src/bootstrap/opnsense-bootstrap.sh.in"
 if [ -n "$WAN_BRG" ]; then
